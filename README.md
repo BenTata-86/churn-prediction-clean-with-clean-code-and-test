@@ -1,8 +1,6 @@
 # Churn prediction-with-clean-code-and-test
 
-**This repository demonstrates an NLP modelling with a web-app ,of messages collected during disasters.
-Data is collected and labeled by Appen. There are almost 26K messages collected and labelled in this dataset.
-We try to predict 36 labels and show the results in a web-app**
+**This repository demonstrates a churn prediction modelling with testing and logging**
 
 ### Table of Contents
 
