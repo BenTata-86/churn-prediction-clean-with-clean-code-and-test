@@ -79,59 +79,6 @@ If you want to clone this repository and run the program:
 
 2. Go to `app` directory: `cd app` and Run your web app: `python run.py`
 
-3. Go to http://0.0.0.0:3000/
-
-- Nav panel & Message query:
-![image](https://user-images.githubusercontent.com/85060022/157391053-0a674e54-0270-4c6c-aebe-1a15a580a980.png)
-
-You can use navigation panel for refreshing page after query, go to Udacity or this repository.
-
-You can enter a message to classify. You can see the message as an example and how the model predicted labels of this messages.
-![image](https://user-images.githubusercontent.com/85060022/157391260-b1071b07-5e56-4405-a3b0-d6c8074fec26.png)
-
-![image](https://user-images.githubusercontent.com/85060022/157391330-726853e1-3523-4145-b05c-7ab9ded78dd1.png)
-
-
-- Graphs:
-    The first graph shows the distributions of the sources.
-![image](https://user-images.githubusercontent.com/85060022/157391758-ede21116-9cb8-437a-9f79-1c30add6f5e1.png)
-
-    Second graph  shows the distribution of the labels. How these messages labelled by Appen.
-![image](https://user-images.githubusercontent.com/85060022/157391899-b6332cc7-76de-4e9b-9c78-8a60a76895d6.png)
-
-
-
-### ETL & ML Pipelines <a name="model"></a>
-**ETL**
-There are 2 csv file one is for "messages" collected during disasters, the other one is the "categories" that messages belong to, labeled by Appen.
-
-- Read csv files into dataframe.
-- Merge these 2 dataframes
-- Clean and process data for ML algorithms
-- Load data into a database using SQLalchemy.
-
-**ML**
-- Load data from database.
-- Tokenize data with NLTK library
-
-    **Model**
-       
-       - Build a pipeline:
-            - Vectorize and transform using sklearn's CountVectorizer() and TfidfTransformer() functions
-            - Uses Multioutput classifier, and estimator is RandomForestClassifier
-            - Make a GridSearch for optimizing parameters.
-       - Evaluate the model
-            
-            Using Classification report
-            
-       - Save model into a pickle file.
- The data is unbalanced so it is hard to get  good results for some categories. 
- 
- As an example there is a category for child_alone, but no message is labelled into this category.
- 
- The aim of this project is to demonstrate an end-to-end Data Science process, so there is a way to go on data cleaning and modelling.
-    - Get much more data for all labels
-    - Use pre-trained deep learning models ..etc
  
 
 
