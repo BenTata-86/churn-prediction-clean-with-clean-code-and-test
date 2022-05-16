@@ -1,0 +1,13 @@
+root - INFO - Testing import_data: SUCCESS
+root - INFO - Checking imported data: SUCCESS
+root - INFO - Testing perform_eda: SUCCESS
+root - INFO - Testing saved file: gender.png was created
+root - INFO - Testing saved file: correlation.png was created
+root - INFO - Testing saved file: age.png was created
+root - INFO - Testing encoder helper: SUCCESS
+root - INFO - Testing encoded columns: SUCCESS
+root - INFO - Testing perform feature engineering: SUCCESS
+root - INFO - Checking encoded dataframe: SUCCESS
+root - INFO - Performing training models: SUCCESS
+root - INFO - Testing saved file: logistic model is created
+root - INFO - Testing saved file: rfc model is created
