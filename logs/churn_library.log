@@ -1,7 +1,9 @@
 root - INFO - Testing import_data: SUCCESS
 root - INFO - Checking imported data: SUCCESS
 root - INFO - Testing perform_eda: SUCCESS
-root - INFO - Testing saved file: gender.png was created
+root - INFO - Testing saved file: marital_status.png was created
+root - INFO - Testing saved file: churn.png was created
+root - INFO - Testing saved file: transaction_count.png was created
 root - INFO - Testing saved file: correlation.png was created
 root - INFO - Testing saved file: age.png was created
 root - INFO - Testing encoder helper: SUCCESS
