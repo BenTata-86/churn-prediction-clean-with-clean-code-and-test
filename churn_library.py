@@ -5,7 +5,7 @@ author: Taha
 date: May 6, 2022
 '''
 import os
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, plot_roc_curve
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -48,11 +48,19 @@ def perform_eda(data_frame):
     '''
 
     plt.figure(figsize=(20, 10))
+    #Churn Distribution Plot
+    data_frame['Churn'] = data_frame['Attrition_Flag'].apply(
+        lambda val: 0 if val == "Existing Customer" else 1
+        )
+    churn_plot = sns.histplot(x='Churn', data=data_frame)
+    fig = churn_plot.get_figure()
+    fig.savefig('./images/eda/churn.png')
+    fig.clf()
 
     # Maritial Status Plot
-    gender_plot = sns.countplot(x='Gender', data=data_frame)
-    fig = gender_plot.get_figure()
-    fig.savefig('./images/eda/gender.png')
+    maritial_plot = data_frame['Marital_Status'].value_counts('normalize').plot(kind='bar')
+    fig = maritial_plot.get_figure()
+    fig.savefig('./images/eda/marital_status.png')
     fig.clf()
 
     # Customer Age Distribution
@@ -61,6 +69,11 @@ def perform_eda(data_frame):
     fig.savefig('./images/eda/age.png')
     fig.clf()
 
+    #Total Transaction Count Plot
+    transaction_count_plot = sns.histplot(data_frame['Total_Trans_Ct'], stat='density', kde=True)
+    fig = transaction_count_plot.get_figure()
+    fig.savefig('./images/eda/transaction_count.png')
+    fig.clf()
     # Correlation Heatmap
     corr_heatmap = sns.heatmap(
         data_frame.corr(),
@@ -198,6 +211,7 @@ def classification_report_image(labels_train, labels_test, labels_lr, labels_rf)
     fig.clf()
 
 
+
 def feature_importance_plot(model, features_data, output_pth):
     '''
     creates and stores the feature importances in pth
@@ -231,6 +245,25 @@ def feature_importance_plot(model, features_data, output_pth):
     plt.xticks(range(features_data.shape[1]), names, rotation=90)
     plt.savefig(f'{output_pth}/feature_importance.png')
 
+def roc_curve_plot(lrc, model, labels_test, features_test):
+    '''
+    store roc_curve plot: storing roc_curve plots in results folder
+    input:
+              lrc: logistic regression model
+              model: model object containing feature_importances_
+              labels_test: labels testing data
+              features_test: features testing data
+    output:
+              None
+    '''
+    #Roc Curves
+    lrc_plot = plot_roc_curve(lrc, features_test, labels_test)
+    plt.figure(figsize=(15, 8))
+    axes_1 = plt.gca()
+    plot_roc_curve(model, features_test, labels_test, ax=axes_1, alpha=0.8)
+    lrc_plot.plot(ax=axes_1, alpha=0.8)
+    plt.savefig('./images/results/roc_curves.png')
+    plt.close()
 
 def train_models(features_train, features_test, labels_train, labels_test):
     '''
@@ -277,8 +310,10 @@ def train_models(features_train, features_test, labels_train, labels_test):
                                 labels_lr,
                                 labels_rf)
 
-    feature_importance_plot(model, features_train, output_pth='./images/results')
+    feature_importance_plot(model, features_test, output_pth='./images/results')
 
+    roc_curve_plot(lrc, model, labels_test,features_test)
+    #Save Models
     joblib.dump(model, './models/rfc_model.pkl')
     joblib.dump(lrc, './models/logistic_model.pkl')
 
