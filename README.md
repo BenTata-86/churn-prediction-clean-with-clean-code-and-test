@@ -16,6 +16,7 @@
 - Python Libraries: NumPy, Pandas
 - Model Loading and Saving Library: Pickle
 -  Data Visualization: Matplotlib, Seaborn
+-  Modelling: Scikit-Learn 1.1.0, category_encoders 2.4.1
 
 
 
