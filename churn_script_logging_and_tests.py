@@ -48,10 +48,22 @@ def test_eda(perform_eda, dataframe):
         raise err
     #checking save_fig
     try:
-        assert os.path.isfile("./images/eda/gender.png")
-        logging.info("Testing saved file: gender.png was created")
+        assert os.path.isfile("./images/eda/marital_status.png")
+        logging.info("Testing saved file: marital_status.png was created")
     except AssertionError as err:
-        logging.error("Not such file on disk: gender.png")
+        logging.error("Not such file on disk: marital_status.png")
+        raise err
+    try:
+        assert os.path.isfile("./images/eda/churn.png")
+        logging.info("Testing saved file: churn.png was created")
+    except AssertionError as err:
+        logging.error("Not such file on disk: churn.png")
+        raise err
+    try:
+        assert os.path.isfile("./images/eda/transaction_count.png")
+        logging.info("Testing saved file: transaction_count.png was created")
+    except AssertionError as err:
+        logging.error("Not such file on disk: transaction_count.png")
         raise err
     try:
         assert os.path.isfile("./images/eda/correlation.png")
